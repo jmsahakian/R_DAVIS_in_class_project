@@ -6,8 +6,12 @@ Please fill in this markdown document, save your edits, and push your changes to
 
 
 What's your name? 
+Jessie Sahakian
 
 What do you study (or hope to study)?
 
+Becoming a data thot
+
 What's one interesting fact about you? 
 
+I have a cat named Cedar
