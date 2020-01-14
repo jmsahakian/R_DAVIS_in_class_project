@@ -46,3 +46,5 @@ setwd()
 # relative file path - "data/portal_data_joined.csv"
 # use tab inside "" to search
 # "../" go up a level in your directory
+
+#treat generated output as diposable
