@@ -16,4 +16,4 @@ What's one interesting fact about you?
 
 I have a cat named Cedar
 
-![image](./images/data_structure_diagram.jpg)
+![image of a beautiful data stucture](./images/data_structure_diagram.jpg)
