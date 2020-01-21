@@ -15,3 +15,5 @@ Becoming a data thot
 What's one interesting fact about you? 
 
 I have a cat named Cedar
+
+![image](./images/data_structure_diagram.jpg)
