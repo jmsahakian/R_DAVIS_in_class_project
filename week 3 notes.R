@@ -7,7 +7,11 @@
 #how does r think about data?
 #we want to know because it is foundational - it will often be the reason for issues even if we're not using this code in our scripts
 
+<<<<<<< HEAD
 #VECTORS!
+=======
+#vectors!
+>>>>>>> 665e5959dcd6fa8d6132501279211d0b3870aeae
 
 #vectors are comprised of a series of values
 
@@ -162,6 +166,7 @@ x[c(TRUE, FALSE)]
 #this conditional vector gets recycled as well 
 x[c(TRUE, FALSE, FALSE)]
 
+<<<<<<< HEAD
 #Working with Missing Data
 
 #In R missing are represented as NAs
@@ -230,3 +235,5 @@ sex
 
 #making factors into characters
 sex_cha <- as.character(sex)
+=======
+>>>>>>> 665e5959dcd6fa8d6132501279211d0b3870aeae
