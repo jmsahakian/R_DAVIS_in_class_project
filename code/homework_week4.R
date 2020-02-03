@@ -16,5 +16,17 @@ surveys_base <- surveys_base[complete.cases(surveys_base$weight),]
 challenge_base <- surveys_base[surveys_base$weight > 150,]
 
 
-
 #Problem 2
+
+library(tidyverse)
+
+surveys2 <- read_csv("data/raw_data/portal_data_joined.csv")
+
+surveys_tidy <- surveys2 %>% 
+  select(species_id, hindfoot_length, year) %>%
+  filter(!is.na(hindfoot_length))
+
+
+surveys_tidy <- surveys_tidy$hindfoot_length [31339:31438,]
+
+challenge_tidy <- filter(surveys_tidy, species_id == "RM")
