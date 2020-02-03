@@ -11,11 +11,10 @@ surveys_base <- surveys_base[1:60,]
 surveys_base$species_id <- (as.character(surveys_base$species_id))
 surveys_base$plot_type <- (as.character(surveys_base$plot_type))
 
-surveys_base <- surveys_base[!is.na.data.frame(surveys_base)]
+surveys_base <- surveys_base[complete.cases(surveys_base$weight),]
 
-challenge_base <- surveys_base
+challenge_base <- surveys_base[surveys_base$weight > 150,]
 
-surveys_base$weight > 150
 
 
 #Problem 2
