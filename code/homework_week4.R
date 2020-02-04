@@ -26,7 +26,7 @@ surveys_tidy <- surveys2 %>%
   select(species_id, hindfoot_length, year) %>%
   filter(!is.na(hindfoot_length))
 
+surveys_tidy <- surveys_tidy[c((nrow(surveys_tidy)-99):nrow(surveys_tidy)),]
 
-surveys_tidy <- surveys_tidy$hindfoot_length [31339:31438,]
-
-challenge_tidy <- filter(surveys_tidy, species_id == "RM")
+challenge_tidy <- surveys_tidy %>% 
+  filter(species_id == "RM" & year == 1997)
