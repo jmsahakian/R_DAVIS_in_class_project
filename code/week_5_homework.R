@@ -1,5 +1,6 @@
 #Week 5 Homework
 
+library(tidyverse)
 
 #1.Create a tibble named surveys from the portal_data_joined.csv file
 surveys <- read_csv("data/raw_data/portal_data_joined.csv")
@@ -25,6 +26,9 @@ biggest_critters <- surveys %>%
 biggest_critters[order(biggest_critters$max_weight),]
 biggest_critters[order(-biggest_critters$max_weight),]
 
+#can use arrange(max_weight)
+#arrange(desc(max_weight))
+
 #'4.Try to figure out where the NA weights are concentrated in the data- 
 #is there a particular species, taxa, plot, or whatever, where there are lots of NA values? 
 #There isn’t necessarily a right or wrong answer here, but manipulate surveys a few different ways to explore this. 
@@ -33,7 +37,26 @@ biggest_critters[order(-biggest_critters$max_weight),]
 surveys %>% 
   count(plot_id) %>% 
   filter(is.na(weight))
+#unsure what error is occurring
 
+#ANSWER
+#surveys %>% 
+ # filter(is.na(weight)) %>% 
+  #group_by(species) %>% 
+  #tally() %>% 
+  #arrange(desc(n))
+
+#surveys %>% 
+ # filter(is.na(weight)) %>% 
+  #group_by(plot_id) %>% 
+  #tally() %>% 
+  #arrange(desc(n))
+
+#surveys %>% 
+  #filter(is.na(weight)) %>% 
+  #group_by(year) %>% 
+  #tally() %>% 
+  #arrange(desc(n))
 
 #5. Take surveys, remove the rows where weight is NA and add a column that contains the 
 #   average weight of each species+sex combination to the full surveys dataframe. 
@@ -62,5 +85,10 @@ surveys_avg_weight <- surveys_avg_weight %>%
 #This question will involve quite a few of the functions you’ve used so far, 
 #and it may be useful to sketch out the steps to get to the final result.
 
-surveys_wide <- surveys 
+surveys_wide <- surveys %>% 
+  filter(!is.na(hindfoot_length)) %>% 
+  group_by(plot_type, genus) %>% 
+  mutate(mean_hindfoot = mean(hindfoot_length)) %>% 
+  pivot_wider(names_from = "plot_type", values_from = "mean_hindfoot")
 
+surveys_wide[order(surveys_wide$control),]
