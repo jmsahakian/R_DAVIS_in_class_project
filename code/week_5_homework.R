@@ -88,7 +88,7 @@ surveys_avg_weight <- surveys_avg_weight %>%
 surveys_wide <- surveys %>% 
   filter(!is.na(hindfoot_length)) %>% 
   group_by(plot_type, genus) %>% 
-  mutate(mean_hindfoot = mean(hindfoot_length)) %>% 
+  summarize(mean_hindfoot = mean(hindfoot_length)) %>% 
   pivot_wider(names_from = "plot_type", values_from = "mean_hindfoot")
 
-surveys_wide[order(surveys_wide$control),]
+surveys_wide <- surveys_wide[order(surveys_wide$Control),]
