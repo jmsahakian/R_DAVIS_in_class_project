@@ -71,5 +71,108 @@ ggplot(data = surveys_complete,
        mapping = aes(x = weight, y=hindfoot_length, color = species_id)) + 
   geom_point(alpha = 0.1)
 
+#Challenge
+ggplot(data = surveys_complete,
+       mapping = aes(x = species_id, y=weight)) + 
+  geom_point(alpha = 0.1, aes(color = plot_type))
+#a bar graph would be better
 
+ggplot(data = surveys_complete,
+       mapping = aes(x = species_id, y=weight)) + 
+  geom_col(aes(color = plot_type))
+#could also a box plot
+
+#box plot with weight on y axis and species_id on the x axis
+surveys_complete %>% 
+  ggplot(mapping = aes(x=species_id, y=weight))+ 
+  geom_boxplot()
+
+surveys_complete %>% 
+  ggplot(mapping = aes(x=species_id, y=weight))+ 
+  geom_boxplot(aes(color = plot_type))
+
+surveys_complete %>% 
+  ggplot(mapping = aes(x=species_id, y=weight))+ 
+  geom_boxplot()+
+  geom_jitter(alpha = 0.3, color = "tomato")
+
+surveys_complete %>% 
+  ggplot(mapping = aes(x=species_id, y=weight))+ 
+  geom_jitter(alpha = 0.3, aes(color = plot_type)) + 
+  geom_boxplot()
+
+#alternative ways of 
+surveys_complete %>% 
+  ggplot(mapping = aes(x=species_id, y=weight))+ 
+  geom_jitter(alpha = 0.3, aes(color = plot_type)) + 
+  geom_boxplot(aes(color = genus))
+
+surveys_complete %>% 
+  ggplot(mapping = aes(x=species_id, y=weight))+ 
+  geom_jitter(alpha = 0.3, aes(color = plot_type)) + 
+  geom_boxplot(aes(color = plot_type))
+
+#Challenge
+
+#1. geom_violin()
+surveys_complete %>% 
+  ggplot(mapping = aes(x=species_id, y=weight))+ 
+  geom_violin()
+
+surveys_complete %>%
+ggplot(mapping = aes(x=species_id, y=weight))+ 
+  geom_jitter(alpha = 0.3, aes(color = plot_type)) + 
+  geom_violin()
+
+surveys_complete %>%
+  ggplot(mapping = aes(x=species_id, y=weight))+ 
+  geom_violin() +
+  geom_jitter(alpha = 0.3, color = "plum3")
+
+#2. scale_y_log10()
+surveys_complete %>%
+  ggplot(mapping = aes(x=species_id, y= weight))+ 
+  geom_violin() +
+  geom_jitter(alpha = 0.3, color = "plum3") +
+  scale_y_log10()
+
+surveys_complete %>%
+  ggplot(mapping = aes(x=species_id, y= weight))+ 
+  geom_violin() +
+  scale_y_log10()
+
+
+#3. new plot - distribution of hindfoot_length, jitter plot
+surveys_complete %>%
+  filter(species_id == "NL" | species_id == "PF") %>% 
+  ggplot(mapping = aes(x=species_id, y= hindfoot_length))+ 
+  geom_jitter(alpha = 0.3, aes(color = plot_id))
+
+
+#we want R to understand that these are discrete not continuous
+
+#surveys_complete$plot_id <- as.factor(surveys_complete$plot_id)
+
+surveys_complete %>%
+  filter(species_id == "NL" | species_id == "PF") %>% 
+  ggplot(mapping = aes(x=species_id, y= hindfoot_length))+ 
+  geom_jitter(alpha = 0.3, aes(color = as.factor(plot_id)))+
+  geom_boxplot()
+
+#how can we make the boxplot transparent 
+
+surveys_complete %>%
+  filter(species_id == "NL" | species_id == "PF") %>% 
+  ggplot(mapping = aes(x=species_id, y= hindfoot_length))+ 
+  geom_jitter(alpha = 0.3, aes(color = as.factor(plot_id)))+
+  geom_boxplot(alpha = 0.5)
+
+surveys_complete %>%
+  filter(species_id == "NL" | species_id == "PF") %>% 
+  ggplot(mapping = aes(x=species_id, y= hindfoot_length))+ 
+  geom_jitter(alpha = 0.3, aes(color = as.factor(plot_id)))+
+  geom_boxplot(fill = NA)
+
+#two color aes, color and fill
+#could also set fill = NA, same as alpha = 0
 
