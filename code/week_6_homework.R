@@ -33,3 +33,16 @@ geom_
   
   geom_smooth(method = 'lm', color = 'black', linetype = 'dashed') +
   theme_bw()
+  
+  
+#Problem 3
+  gapminder %>%
+    filter(country %in% c("Brazil", "China", "El Salvador", "Niger", "United States")) %>% 
+    ggplot(aes(x = country, y = lifeExp)) +
+    geom_jitter()+
+    geom_boxplot(aes(color = country), alpha = 0.5)+ 
+    labs(color = "Country") +
+    labs(x = "Country", y = "Life Expectancy")+
+    labs(title = "Life Expectancy of Five Countries")
+
+  
