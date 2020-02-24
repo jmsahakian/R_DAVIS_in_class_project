@@ -25,16 +25,20 @@ ggplot(gapminder, aes(x = gdpPercap, y = lifeExp)) +
 #I would expect geom_smooth to create a line based upon these data for each continent in order to see any trends.
 
 gapminder %>% 
+  mutate(prop_lifeExp = lifeExp/pop) %>% 
   ggplot(aes(x = gdpPercap, y = lifeExp)) +
-  geom_point(aes(color = continent), size = .25) + 
-  scale_x_log10() 
-  
-geom_
-  
+  geom_point(aes(color = continent, size = prop_lifeExp)) + 
+  scale_x_log10() +
   geom_smooth(method = 'lm', color = 'black', linetype = 'dashed') +
-  theme_bw()
-  
-  
+  theme_bw() 
+
+gapminder %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp)) +
+  geom_point(aes(color = continent, size = pop)) + 
+  scale_x_log10() +
+  geom_smooth(method = 'lm', color = 'black', linetype = 'dashed') +
+  theme_bw()   
+
 #Problem 3
   gapminder %>%
     filter(country %in% c("Brazil", "China", "El Salvador", "Niger", "United States")) %>% 
@@ -43,6 +47,7 @@ geom_
     geom_boxplot(aes(color = country), alpha = 0.5)+ 
     labs(color = "Country") +
     labs(x = "Country", y = "Life Expectancy")+
-    labs(title = "Life Expectancy of Five Countries")
+    labs(title = "Life Expectancy of Five Countries") 
+  ggsave(filename = "lifeExp5.png", plot=last_plot())
 
   
