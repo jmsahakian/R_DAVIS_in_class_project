@@ -58,4 +58,56 @@ ggplot(data = new_count, mapping = aes(x=year, y = n, color = sex)) +
 
 #simplification can make a big difference in communication 
 
+#can plot in base R
+
+#ggthemes has many options
+#scale_color_colorblind()
+#Viridis package
+#scale_color_viridis_c or scale_color_viridis_d
+
+#COWPLOT
+#can stitch together many plots
+
+library(cowplot)
+
+plot.diamonds <- diamonds %>% 
+  ggplot(aes(x=clarity, fill = cut)) + 
+  geom_bar()+
+  theme(axis.text.x = element_text(angle = 70, vjust = 0.5))
+
+plot.cars <- mtcars %>% 
+  ggplot(aes(x=wt, y = mpg, color = factor(cyl))) + 
+  geom_point(size = 2) +
+  theme_minimal() 
+
+plot.cars2 <- mpg %>% 
+  ggplot(aes(x = cty, y = hwy, color = factor(manufacturer))) +
+  geom_point()
+
+final_plot <- plot_grid(plot.cars, plot.diamonds, plot.cars2, labels = c("A", "B", "C"), ncol = 2, nrow = 2)
+
+#Patchwork 
+
+#library(ggplot2)
+#library(patchwork)
+#https://github.com/thomasp85/patchwork
+
+#Plotly for interactive plots
+
+library(plotly)
+
+plot.cars %>% 
+  ggplotly()
+
+ggplot(mtcars, aes(x = wt, y =  mpg)) + 
+  geom_point () + 
+  geom_smooth (method = "lm") + 
+  facet_wrap (~cyl)
+
+ggplot(mtcars, aes(x = wt, y =  mpg)) + 
+  geom_point () + 
+  geom_smooth (method = "lm", aes(group = factor(cyl), color = factor(cyl)))
+#use factor because cyl are not continuous 
+
+
 
