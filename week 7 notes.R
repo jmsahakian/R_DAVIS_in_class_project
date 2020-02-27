@@ -51,6 +51,7 @@ new_count <- surveys_complente %>%
 
 ggplot(data = new_count, mapping = aes(x=year, y = n, color = sex)) + 
   geom_line () +
+<<<<<<< HEAD
   facet_wrap(~ species_id) +
   theme_bw()
 #could also do theme_minimal()
@@ -58,3 +59,6 @@ ggplot(data = new_count, mapping = aes(x=year, y = n, color = sex)) +
 
 #simplification can make a big difference in communication 
 
+=======
+  facet_wrap(~ species_id)  
+>>>>>>> 8c3102455bc1fc5fa71076841d39590854bf635c
