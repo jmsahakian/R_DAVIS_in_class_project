@@ -32,3 +32,22 @@ gapminder_pop_change %>%
   labs(x = "Country") +
   labs(y = "Change in Population Between 2002 and 2007")
 ggsave(filename = "images/mybeautifulson.png")
+
+#SETH YEFRICAN'S CODE
+
+library(tidyverse)
+library(gapminder)
+gapminder %>%
+  group_by(continent, country) %>%
+  summarize(pop_change = pop[year == 2007]-pop[year == 2002]) %>%
+  ggplot(mapping = aes(x = reorder(country, pop_change), y = pop_change, fill= as.factor(continent)), alpha = 0) +
+  geom_col() +
+  facet_wrap(~continent, scales = "free") + 
+  ggthemes::scale_color_colorblind() + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        axis.text.y = element_text(size = 10),
+        legend.position = "none") +
+  labs(x = "Country", y = "Change in Population Between 2002 and 2007") + # Don't need to repeat labs()
+  coord_flip()
+ggsave(filename = "my_large_son.png", width = 11, height = 14, units = "in")
+
