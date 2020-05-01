@@ -1,0 +1,28 @@
+---
+title: "R-Davis Final Assignment"
+author: "Jessie Sahakian"
+date: "4/30/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message = FALSE)
+library(tidyverse)
+library(DT)
+```
+
+```{r}
+read_csv("data/raw_data/nyc_13_flights_new.csv")
+read_csv("data/raw_data/nyc_13_planes.csv")
+read_csv("data/raw_data/nyc_13_weather.csv")
+
+#may need to change the time variables to as.character()
+```
+
+
+Item #1
+
+```{r}
+
+```
+
